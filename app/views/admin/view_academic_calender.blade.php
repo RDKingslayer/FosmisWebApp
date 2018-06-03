@@ -1,4 +1,4 @@
-@extends('layouts.dashboard2')
+@extends('layouts.dashboard')
 
 @section('css')
    <link rel="stylesheet" href="/css/redmond/jquery-ui-1.10.3.custom.css" />
