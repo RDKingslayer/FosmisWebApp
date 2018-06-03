@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.dashboard2')
 
 @section('css')
 	<style type="text/css">
@@ -126,6 +126,7 @@
 <?php    
     }
 ?>
+<div class="container">
 <center><h1>Semester Time Table</h1></center>
 <table id="timetable">
     <tr>
@@ -309,4 +310,5 @@
         <td colspan="5">&nbsp;</td>
     </tr>
 </table>
+</div>
 @stop

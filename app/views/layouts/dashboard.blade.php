@@ -99,12 +99,7 @@
                                     </ul>
                                 </div> -->
                           <ul >
-                             <li>
-                                      <span class="subtopic">Student Registration</span>
-                            </li>
-
-                            <ul><i class="icon-list icon-black"></i> &nbsp<a href="{{ URL::Route('register-students')}}">Register Students</a></ul>
-                            <ul><i class="icon-list icon-black"></i> &nbsp<a href="{{ URL::Route('search_students')}}">Search Students</a></ul>
+                              @yield('sidebar')
                           </ul>
                       </div>
                     </div>
