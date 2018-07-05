@@ -19,6 +19,13 @@
                                  </i> Course Registration
                               </a>
                            </li>
+                            <li>
+                                <a href="{{ URL::Route('show_registered_combination')}}">
+                                    <i class="icon-book icon-black">
+                                    </i> Combination Registration
+                                </a>
+                            </li>
+
                         </ul>
                   </li>
                </ul>
@@ -31,8 +38,7 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
                     <?php
-                        $i=Auth::user()->user;
-                        $s= substr($i, 2);
+                        $s=Auth::user()->user;
                         $b = Student::where('student_id','=',$s)->first();
                          
                     ?>

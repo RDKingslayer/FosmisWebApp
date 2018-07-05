@@ -70,10 +70,45 @@ Route::post('parse_csv', array('as'=>'parse_csv', 'uses'=>'AdminController@Parse
 
     Route::post('register_only_one_student', array('as'=>'register_only_one_student', 'uses'=>'AdminController@registerOneStudent'));
 
+    //Assign Permanent ID's for students
+    Route::get('assign_permanent_ids', array('as'=>'assign_permanent_ids', 'uses'=>'AdminController@AssignPermanentIDs'));
+
+    Route::post('assign_pid_single', array('as'=>'assign_pid_single', 'uses'=>'AdminController@AssignPIDsingle'));
+
+
 Route::get('showTable', array('as'=>'showTable', 'uses'=>'AdminController@showTable'));
 //Search students
     Route::get('search_students', array('as'=>'search_students', 'uses'=>'AdminController@searchStudents'));
     Route::post('search_students', array('as'=>'search_students', 'uses'=>'AdminController@searchStudents'));
+    Route::get('view_photo', array('as'=>'view_photo', 'uses'=>'AdminController@viewPhoto'));
+    Route::post('view_photo', array('as'=>'view_photo', 'uses'=>'AdminController@viewPhoto'));
+    Route::get('update_photo', array('as'=>'update_photo', 'uses'=>'AdminController@updateWindow'));
+    Route::post('update_photo', array('as'=>'update_photo', 'uses'=>'AdminController@updateWindow'));
+
+    Route::get('save_photo', array('as'=>'save_photo', 'uses'=>'AdminController@savePhoto'));
+    Route::post('save_photo', array('as'=>'save_photo', 'uses'=>'AdminController@savePhoto'));
+
+    /*************************************************Clerk*****************************************/
+    //Search students
+    Route::get('search_students1', array('as'=>'search_students1', 'uses'=>'ClerkController@SearchStudents'));
+    Route::post('search_students1', array('as'=>'search_students1', 'uses'=>'ClerkController@assignToStudents'));
+    // PHY SCI combination
+
+    Route::get('stucom-ps1',array('as'=>'stucom-ps1','uses'=>'ClerkController@SearchPS1'));
+    Route::get('stucom-ps2',array('as'=>'stucom-ps2','uses'=>'ClerkController@SearchPS2'));
+    Route::get('stucom-ps3',array('as'=>'stucom-ps3','uses'=>'ClerkController@SearchPS3'));
+    Route::get('stucom-ps4',array('as'=>'stucom-ps4','uses'=>'ClerkController@SearchPS4'));
+    Route::get('stucom-ps5',array('as'=>'stucom-ps5','uses'=>'ClerkController@SearchPS5'));
+    Route::get('stucom-ps6',array('as'=>'stucom-ps6','uses'=>'ClerkController@SearchPS6'));
+    Route::get('stucom-ps7',array('as'=>'stucom-ps7','uses'=>'ClerkController@SearchPS7'));
+    Route::get('stucom-ps8',array('as'=>'stucom-ps8','uses'=>'ClerkController@SearchPS8'));
+
+    //BIO SCI  combination
+    Route::get('stucom-bs1',array('as'=>'stucom-bs1','uses'=>'ClerkController@SearchBS1'));
+    Route::get('stucom-bs2',array('as'=>'stucom-bs2','uses'=>'ClerkController@SearchBS2'));
+    Route::get('stucom-bs3',array('as'=>'stucom-bs3','uses'=>'ClerkController@SearchBS3'));
+    Route::get('stucom-bs4',array('as'=>'stucom-bs4','uses'=>'ClerkController@SearchBS4'));
+
 
 /******************combination registration*******************************/
 Route::get('call-combination/{current_year?}',	array('as'=>'call-combination', 'uses'=>'CombinationController@CallCombination'));
@@ -81,6 +116,11 @@ Route::post('edit_combination_priority',	array('as'=>'edit_combination_priority'
 Route::post('combination_priority',	array('as'=>'combination_priority', 'uses'=>'CombinationController@PostRequestCombination'));
 Route::post('post-combination-registration}', array('as' =>'post-combination-registration' ,'uses'=>'CombinationController@PostCallCombination' ));
 
+    Route::post('combination_registration_date_check', array('as' =>'combination_registration_date_check' ,'uses'=>'CombinationController@CallStudentCourseRegistrationcheck' ));
+    Route::get('combination_registration', array('as' =>'combination_registration' ,'uses'=>'CombinationController@CallStudentCourseRegistration' ));
+    Route::post('SubmitStudentCourseRegistration', array('as' =>'SubmitStudentCourseRegistration' ,'uses'=>'CombinationController@SubmitStudentCourseRegistration' ));
+    Route::get('show_registered_combination', array('as' =>'show_registered_combination' ,'uses'=>'CombinationController@CheckRegistration' ));
+    Route::get('EditCombinationRegistration', array('as' =>'EditCombinationRegistration' ,'uses'=>'CombinationController@EditCombinationRegistration' ));
 
 /******************attendance*******************/
 Route::get('daily_attendance/{sub?}/{title?}/{cstype?}/{st_time?}/{duration?}',	array('as'=>'daily_attendance', 'uses'=>'AttendanceController@daily_attendance'));

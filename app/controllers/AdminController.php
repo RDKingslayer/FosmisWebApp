@@ -281,4 +281,65 @@ class AdminController extends BaseController {
         $students = Student::all();
         return View::make('admin.searchStudents')->with('students',$students);
     }
+
+    public function viewPhoto()
+    {
+        $students = Student::all();
+        $sc_number=Input::get('sc_number');
+        return View::make('admin.view_photo')->with('students',$sc_number);
+
+    }
+
+    public function updateWindow()
+    {
+        $sc_number=Input::get('sc_number');
+        return View::make('admin.update_photo')->with('sc_number',$sc_number);
+    }
+
+    public function savePhoto()
+    {
+
+        $data = Input::get('image');
+        $sc_number=Input::get('sc_number');
+
+        list($type, $data)  = explode(';', $data);
+        list(, $data)       = explode(',', $data);
+        $data               = base64_decode($data);
+
+        $avatarName          = $sc_number. '.jpg';
+        $avatar_uri          = file_put_contents(public_path() . '/temp/students_photos/' . $avatarName, $data);
+        return View::make('admin.view_photo');
+    }
+
+    public function AssignPermanentIDs()
+    {
+        return View::make('admin.assign_permanent_id');
+    }
+    public function AssignPIDsingle()
+    {
+        $temporary=Input::get('TemporaryID');
+        $permanent=Input::get('PermanentID');
+
+
+
+        $inputs=Input::all();
+        $rules=array(
+            'TemporaryID'    =>'required',
+            'PermanentID'    =>'required|unique:student,student_id',
+        );
+
+        $validation = Validator::make($inputs,$rules);
+
+        if($validation->fails())
+        {
+            return Redirect::back()->withInput()
+                ->withErrors($validation);
+        }
+        else
+        {
+            Student::where("student_id", "=", $temporary)->update(array('student_id' => $permanent));
+            return View::make('admin.assign_permanent_id');
+
+        }
+    }
 }

@@ -4,7 +4,8 @@
 
             <div class="nav-collapse collapse">
                <a class="brand" href="{{ URL::Route('daily_attendance')}}">
-               <span style="text-transform: lowercase;">Fosmis
+                   <span style="text-transform: lowercase;">Fosmis</span>
+
                </a>
                <!-- GENERAL -->
                <ul class="nav">

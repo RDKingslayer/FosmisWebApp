@@ -2,14 +2,15 @@
 
 class AccountController extends BaseController {
 
-	public function postSign(){
+
+    public function postSign(){
 
 		$Validator = Validator::make(Input::all(), array(
 			'Username' 	=>  'required|max:15',
 			'Password' 	=>  'required|min:6'
 		));
 
-		$fosmis = User::where('user', Input::get('Username'));
+		$fosmis = User:: where('user',input::get('Username'));
 
 			if($Validator->fails()){
 				return Redirect::route('home')
@@ -27,7 +28,6 @@ class AccountController extends BaseController {
 				));
 
 				if($auth){
-
 					return Redirect::route('home'); 
 				}
 				else
@@ -46,7 +46,7 @@ class AccountController extends BaseController {
 			elseif(Auth::user()->Role->role  == 'CAA')
 			{
 				//return View::make('account.data_entry_op'); 
-                		return Redirect::action("AttendanceController@daily_attendance");
+                return Redirect::action("AttendanceController@daily_attendance");
 
 			}
 			elseif(Auth::user()->Role->role  == 'student')
@@ -57,6 +57,10 @@ class AccountController extends BaseController {
             elseif(Auth::user()->Role->role  == 'HOD')
             {
                 return Redirect::route('register_new_course');
+            }
+            elseif(Auth::user()->Role->role  == 'C')
+            {
+               return Redirect::route('search_students1');
             }
             
 		}

@@ -1,3 +1,4 @@
+
 @extends('layouts.dashboard')
 
 @section('css')
@@ -65,6 +66,9 @@
     </script>
 
     <script>
+
+
+
         //Script for Modal View
         $(document).on("click", ".open-infoDialog", function () {
             var s_no = $(this).data('s_no');
@@ -86,18 +90,31 @@
             var gender = $(this).data('gender');
             var province = $(this).data('province');
             var distric = $(this).data('distric');
-            var al_batch = $(this).data('al_batch');
-            var current_batch = $(this).data('current_batch');
-            var status = $(this).data('status');
-            var degree_id = $(this).data('degree_id');
-            var combination_id = $(this).data('combination_id');
+            var district = $(this).data('district');
+            var divisional_secretariat = $(this).data('divisional_secretariat');
+            var grama_niladari_division = $(this).data('grama_niladari_division');
+            var z_score = $(this).data('z_score');
+            var nic = $(this).data('nic');
+            var telephone_number_home = $(this).data('telephone_number_home');
+            var selection_method = $(this).data('selection_method');
+            var mother_name = $(this).data('mother_name');
+            var mother_occupation = $(this).data('mother_occupation');
+            var father_name = $(this).data('father_name');
+            var father_occupation = $(this).data('father_occupation');
+            var guardian_contact_no = $(this).data('guardian_contact_no');
+            var informer_contact_no = $(this).data('informer_contact_no');
+            var school = $(this).data('school');
+            var village = $(this).data('village');
+            var race = $(this).data('race');
+            var date_of_registration = $(this).data('date_of_registration');
+
 
             $(".modal-body #modal_s_no").html('&nbsp' +s_no );
             $(".modal-body #modal_ssid").html('&nbsp' +ssid );
             $(".modal-body #modal_course_of_study").html('&nbsp' +course_of_study );
             $(".modal-body #modal_index_number_al").html('&nbsp' +index_number_al );
             $(".modal-body #modal_temporary_number").html('&nbsp' +temporary_number );
-            $(".modal-body #modal_permanent_number").html('&nbspSC' +permanent_number );
+            $(".modal-body #modal_permanent_number").html('&nbsp' +permanent_number );
             //$(".modal-body #modal_student_id").html('&nbspSC' +id );
             $(".modal-body #modal_name_with_initials").html('&nbsp' +initials + '&nbsp' + last_name );
             $(".modal-body #modal_full_name").html('&nbsp' +full_name );
@@ -107,17 +124,38 @@
             $(".modal-body #modal_gender").html('&nbsp' +gender );
             $(".modal-body #modal_province").html('&nbsp' +province );
             $(".modal-body #modal_distric").html('&nbsp' +distric );
-            $(".modal-body #modal_al_batch").html('&nbsp'+al_batch);
-            $(".modal-body #modal_current_batch").html('&nbsp'+current_batch);
-            $(".modal-body #modal_status").html('&nbsp'+status);
-            $(".modal-body #modal_degree_id").html('&nbsp'+degree_id);
-            $(".modal-body #modal_combination_id").html('&nbsp'+combination_id);
+            $(".modal-body #modal_district").html('&nbsp' +district );
+            $(".modal-body #modal_divisional_secretariat").html('&nbsp' +divisional_secretariat );
+            $(".modal-body #modal_grama_niladari_division").html('&nbsp' +grama_niladari_division );
+            $(".modal-body #modal_z_score").html('&nbsp' +z_score );
+            $(".modal-body #modal_nic").html('&nbsp' +nic );
+            $(".modal-body #modal_telephone_number_home").html('&nbsp' +telephone_number_home );
+            $(".modal-body #modal_selection_method").html('&nbsp' +selection_method );
+            $(".modal-body #modal_mother_name").html('&nbsp' +mother_name );
+            $(".modal-body #modal_mother_occupation").html('&nbsp' +mother_occupation );
+            $(".modal-body #modal_father_name").html('&nbsp' +father_name );
+            $(".modal-body #modal_father_occupation").html('&nbsp' +father_occupation );
+            $(".modal-body #modal_guardian_contact_no").html('&nbsp' +guardian_contact_no );
+            $(".modal-body #modal_informer_contact_no").html('&nbsp' +informer_contact_no );
+            $(".modal-body #modal_school").html('&nbsp' +school );
+            $(".modal-body #modal_village").html('&nbsp' +village );
+            $(".modal-body #modal_race").html('&nbsp' +race );
+            $(".modal-body #modal_date_of_registration").html('&nbsp' +date_of_registration );
 
         });
 
 
 
     </script>
+@stop
+
+@section('list')
+    <li>
+        <span class="subtopic">Student Registration</span>
+    </li>
+
+    <ul><i class="icon-list icon-black"></i> &nbsp<a href="{{ URL::Route('register-students')}}">Register Students</a></ul>
+    <ul><i class="icon-list icon-black"></i> &nbsp<a href="{{ URL::Route('search_students')}}">Search Students</a></ul>
 @stop
 
 @section('content')
@@ -127,18 +165,16 @@
         {{Form::open(array('id'=>'frmstudentsearch','route'=>'search_students'))}}
         <div class="row-fluid">
 
-            <div class="span3">
+            <div class="span5">
 
                 {{Form::label('stu_id','Search By ID')}}
                 {{Form::text('stu_id','',array('id'=>'stu_id','placeholder'=>'Search'))}}
             </div>
-            <div class="offset1 span3">
+            <div class="offset1 span5">
                 {{Form::label('stu_name','Search By Name')}}
                 {{Form::text('stu_name','',array('id'=>'stu_name','placeholder'=>'Search'))}}
             </div>
-            <div class="offset1 span3">
 
-            </div>
         </div>
 
 
@@ -152,6 +188,7 @@
                     <th>Permanent Number</th>
                     <th>Student Name</th>
                     <th>Gender</th>
+                    <th>Photo</th>
                 </tr>
                 </thead>
 
@@ -165,7 +202,7 @@
                                data-index_number_al="{{$row->index_number_al}}"
                                data-temporary_number="{{$row->temporary_number}}"
                                data-permanent_number="{{$row->permanent_number}}"
-                               {{--data-id="{{ $row->student_id }}"--}}
+                               data-id="{{ $row->student_id }}"
                                data-initials="{{ $row->initials }}"
                                data-last_name="{{ $row->last_name }}"
                                data-full_name="{{ $row->name_in_full }}"
@@ -178,15 +215,35 @@
                                data-gender="{{ $row->gender }}"
                                data-province="{{ $row->province }}"
                                data-distric="{{ $row->distric }}"
-                               data-al_batch="{{ $row->al_batch }}"
-                               data-current_batch="{{ $row->current_batch }}"
-                               data-status="{{ $row->status }}"
-                               data-degree_id="{{ $row->degree_id }}"
-                               data-combination_id="{{ $row->combination_id }}"
-                            >{{$row['student_id']}}</a></td>
+                               data-district="{{ $row->district }}"
+                               data-divisional_secretariat="{{ $row->divisional_secretariat }}"
+                               data-grama_niladari_division="{{ $row->grama_niladari_division }}"
+                               data-z_score="{{ $row->z_score }}"
+                               data-nic="{{ $row->nic }}"
+                               data-telephone_number_home="{{ $row->telephone_number_home }}"
+                               data-selection_method="{{ $row->selection_method }}"
+                               data-mother_name="{{ $row->mother_name }}"
+                               data-mother_occupation="{{ $row->mother_occupation }}"
+                               data-father_name="{{ $row->father_name }}"
+                               data-father_occupation="{{ $row->father_occupation }}"
+                               data-guardian_contact_no="{{ $row->guardian_contact_no }}"
+                               data-informer_contact_no="{{ $row->informer_contact_no }}"
+                               data-school="{{ $row->school }}"
+                               data-village="{{ $row->village }}"
+                               data-race="{{ $row->race }}"
+                               data-date_of_registration="{{ $row->date_of_registration }}"
+                            >{{"SC".$row['student_id']}}</a></td>
                         <td>{{$row['initials'] .' '. $row['last_name'] }}</td>
                         <td>{{$row['gender']}}</td>
+
+                        <td>
+                            <form method="post" target="print_popup" action="{{URL::Route('view_photo')}}" onsubmit="window.open('about:blank','print_popup','width=400,height=400');">
+                                <input type="hidden" name="sc_number" value={{$row->student_id}} id="sc_number">
+                                <input type="submit" value="View/Upload">
+                            </form>
+                        </td>
                     </tr>
+
 
                 @endforeach
 
@@ -196,7 +253,7 @@
 
 
     </div>
-    </div>
+
 
     {{Form::close()}}
 
@@ -287,29 +344,89 @@
                             <td><div id="modal_distric"></div></td>
                         </tr>
                         <tr>
-                            <td>A/L Batch</td>
+                            <td>District</td>
                             <td> :</td>
-                            <td><div id="email"></div></td>
+                            <td><div id="modal_district"></div></td>
                         </tr>
                         <tr>
-                            <td>Current Batch</td>
+                            <td>Divisional Secretariat</td>
                             <td> :</td>
-                            <td><div id="modal_current_batch"></div></td>
+                            <td><div id="modal_divisional_secretariat"></div></td>
                         </tr>
                         <tr>
-                            <td>Status</td>
+                            <td>Grama niladari division</td>
                             <td> :</td>
-                            <td><div id="modal_status"></div></td>
+                            <td><div id="modal_grama_niladari_division"></div></td>
                         </tr>
                         <tr>
-                            <td>Degree ID</td>
+                            <td>Z Score</td>
                             <td> :</td>
-                            <td><div id="modal_degree_id"></div></td>
+                            <td><div id="modal_z_score"></div></td>
                         </tr>
                         <tr>
-                            <td>Combination ID</td>
+                            <td>Nic</td>
                             <td> :</td>
-                            <td><div id="modal_combination_id"></div></td>
+                            <td><div id="modal_nic"></div></td>
+                        </tr>
+                        <tr>
+                            <td>Telephone Number Home</td>
+                            <td> :</td>
+                            <td><div id="modal_telephone_number_home"></div></td>
+                        </tr>
+                        <tr>
+                            <td>Selection Method</td>
+                            <td> :</td>
+                            <td><div id="modal_selection_method"></div></td>
+                        </tr>
+                        <tr>
+                            <td>Mother's name</td>
+                            <td> :</td>
+                            <td><div id="modal_mother_name"></div></td>
+                        </tr>
+                        <tr>
+                            <td>Mother's occupation</td>
+                            <td> :</td>
+                            <td><div id="modal_mother_occupation"></div></td>
+                        </tr>
+                        <tr>
+                            <td>Father's name</td>
+                            <td> :</td>
+                            <td><div id="modal_father_name"></div></td>
+                        </tr>
+                        <tr>
+                            <td>Father's occupation</td>
+                            <td> :</td>
+                            <td><div id="modal_father_occupation"></div></td>
+                        </tr>
+                        <tr>
+                            <td>Guardian's contact number</td>
+                            <td> :</td>
+                            <td><div id="modal_guardian_contact_no"></div></td>
+                        </tr>
+                        <tr>
+                            <td>Informer's contact number</td>
+                            <td> :</td>
+                            <td><div id="modal_informer_contact_no"></div></td>
+                        </tr>
+                        <tr>
+                            <td>School</td>
+                            <td> :</td>
+                            <td><div id="modal_school"></div></td>
+                        </tr>
+                        <tr>
+                            <td>Village</td>
+                            <td> :</td>
+                            <td><div id="modal_village"></div></td>
+                        </tr>
+                        <tr>
+                            <td>Race</td>
+                            <td> :</td>
+                            <td><div id="modal_race"></div></td>
+                        </tr>
+                        <tr>
+                            <td>Date of Registration</td>
+                            <td> :</td>
+                            <td><div id="modal_date_of_registration"></div></td>
                         </tr>
 
                     </table>
