@@ -92,8 +92,8 @@ Route::get('showTable', array('as'=>'showTable', 'uses'=>'AdminController@showTa
     //Search students
     Route::get('search_students1', array('as'=>'search_students1', 'uses'=>'ClerkController@SearchStudents'));
     Route::post('search_students1', array('as'=>'search_students1', 'uses'=>'ClerkController@assignToStudents'));
-    // PHY SCI combination
 
+    // PHY SCI combination
     Route::get('stucom-ps1',array('as'=>'stucom-ps1','uses'=>'ClerkController@SearchPS1'));
     Route::get('stucom-ps2',array('as'=>'stucom-ps2','uses'=>'ClerkController@SearchPS2'));
     Route::get('stucom-ps3',array('as'=>'stucom-ps3','uses'=>'ClerkController@SearchPS3'));
@@ -114,7 +114,7 @@ Route::get('showTable', array('as'=>'showTable', 'uses'=>'AdminController@showTa
 Route::get('call-combination/{current_year?}',	array('as'=>'call-combination', 'uses'=>'CombinationController@CallCombination'));
 Route::post('edit_combination_priority',	array('as'=>'edit_combination_priority', 'uses'=>'CombinationController@EditCombinationPriority'));
 Route::post('combination_priority',	array('as'=>'combination_priority', 'uses'=>'CombinationController@PostRequestCombination'));
-Route::post('post-combination-registration}', array('as' =>'post-combination-registration' ,'uses'=>'CombinationController@PostCallCombination' ));
+Route::post('post-combination-registration', array('as' =>'post-combination-registration' ,'uses'=>'CombinationController@PostCallCombination' ));
 
     Route::post('combination_registration_date_check', array('as' =>'combination_registration_date_check' ,'uses'=>'CombinationController@CallStudentCourseRegistrationcheck' ));
     Route::get('combination_registration', array('as' =>'combination_registration' ,'uses'=>'CombinationController@CallStudentCourseRegistration' ));

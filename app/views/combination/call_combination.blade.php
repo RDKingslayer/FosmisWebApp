@@ -17,66 +17,17 @@
             changeYear: true,
             yearRange: "-1:+2",
             dateFormat: 'yy-mm-dd',
-        });
+            });
             
         });
-        //delete requested priority
-    	$('.edit_priority').click(function() {
-	        var uname = this.id;
 
-	    	alert("You have to make choices again after click on this button!");
-				$.ajax({
-					url: "{{ URL::Route('edit_combination_priority')}}",
-					data: {name: uname}, 
-					dataType: 'json',
-					type: 'POST',
-
-					success: function (res) { 
-					 	if (res == '1'){
-					 		alert("Error!");
-					 	}else{
-						 	location.reload();
-						}	
-					} 
-		        });
-      });
-
-
-    //request combination with priority
-	$('.combination_priority').on('change', function (){
-		var priority = $(this).val();
-		if(priority==""){
-
-		}else{
-			var combination_id= this.name;
-			var student_id_academic=this.id;
-			$.ajax({
-				url: "{{ URL::Route('combination_priority')}}",
-				data: {priority: priority,combination_id: combination_id,student_id_academic: student_id_academic}, 
-				dataType: 'json',
-				type: 'POST',
-
-				success: function (res) { 
-				 	if (res == '1'){
-				 		alert("Please delete your previous choices before submit same priority!");
-				 	}else{
-					 	location.reload();
-					}	
-				} 
-	        });
-		}
-	});	
-});
+    });
 
 </script>
 
 @stop
 
 @section('content')
-<?php
-	$batch_get_academic=Batch::orderBy('academic_year_id','DESC')->where('level_id','=',1 )->first()->batch_id;
-	$previous = CallCombinationRegistration::orderBy('batch','DESC')->where('academic_year_id','=',$current_year->academic_year_id )->first();
-?>
 
 <div class="well span8">
 	   	<legend>Start Combination Registration for academic year {{$current_year->academic_year_id}}</legend>
@@ -108,7 +59,7 @@
                <label class="control-labelme" for="" >Registration Start Date</label>
             </div>
 	        <div class="span4 row-fluid">
-	        	<input name="start_date" id="start_date" class="input-large" type="date" required>
+	        	<input name="start_date" id="start_date" class="input-large" type="text" value="{{ $previous->start_date }}" @if($start == 0) disabled @endif>
 			
 			</div>
         </div>	
@@ -128,7 +79,7 @@
                <label class="control-labelme" for="" >Registration End Date</label>
             </div>
 	        <div class="span4 row-fluid">
-	        	<input name="end_date" id="end_date" class="input-large" type="date" required>
+	        	<input name="end_date" id="end_date" class="input-large" type="text" placeholder="yyyy/mm/dd" value="{{ $previous->end_date }}" >
 			</div>
     	</div>	
 </br>
@@ -143,7 +94,13 @@
 	        </div>
         </div>
      </form>
+	@if($errors->has('start_date') )
 
+			<label class="label-warning" style="text-align: center">
+					{{ $errors->first('start_date') }}
+			</label>
+
+	@endif
      <!-- Previous Combination Registration -->
      <div class="well table-responsive" >
 		<legend>Previous Details</legend>
@@ -173,106 +130,13 @@
 					<td>Off</td>
 					@endif					
 				</tr>
-			@else
-			<?php $previous=NULL; ?>
+
 			@endif
 			</tbody>
 		</table>
 		
    	</div>
 </div>
-<!--Student -->
 
-	<div class="well span8">
-	   	<legend>Combination Registration for academic year {{$current_year->academic_year_id}}</legend>
-		<form class="form-horizontal" method="" id="student_form" action="" name="" novalidate>
-	   	
-	   	<?php
-			$today=date('Y-m-d');
-			$role=Auth::user()->role;
-			//$user_name=Auth::user()->user;
-			$user_name="8991";
-			$stream=NULL;
-			$batch =NULL;
-			if($role!='student'){
-				$student_details=Student::where('student_id','=',$user_name )->first();
-				if($student_details){
-					$stream=$student_details->stream_id;
-					$batch =$student_details->current_batch;
-					$available_combinations=SubjectCombination::where('combination_id','LIKE',$stream.'%')->get();
-					$available_combinations_count=SubjectCombination::where('combination_id','LIKE',$stream.'%')->count();
-
-				}else{
-					
-				}
-			}
-		?>
-		
-		@if($previous)
-			@if(($batch==$previous->batch) && ($today<=$previous->end_date) && ($previous->status==1))
-				<table id="apply_combination" class="table table-bordered ">
-				    <thead>
-				        <tr>
-				            <th>Combination</th>
-				            <th>Priority</th>
-				        </tr>
-					 </thead>
-
-					<tbody>
-						@if($available_combinations)
-							@foreach($available_combinations as $available_combinations)
-								<tr>
-									<td>
-										<?php
-											echo Subject::where('subject_id','=',$available_combinations->subject_id1)->first()->subject_name.'<br>';
-											echo Subject::where('subject_id','=',$available_combinations->subject_id2)->first()->subject_name.'<br>';
-											echo Subject::where('subject_id','=',$available_combinations->subject_id3)->first()->subject_name;
-										?>
-									</td>
-
-									<td >
-										<?php
-											$id=$user_name.'/'.$current_year->academic_year_id ;
-											$previous_registration = RequestCombination::where(['student_id'=>$user_name, 'combination_id'=>$available_combinations->combination_id,'academic_year_id'=>$current_year->academic_year_id])->first();
-										?>
-										@if($previous_registration)
-											{{$previous_registration->priority}}
-										@else
-					                     	<select   name='{{$available_combinations->combination_id}}' id='{{$id}}' class="combination_priority" type="text" >
-						                		<option></option>
-						                		<?php
-						                			if($available_combinations_count > 0){
-							                  			for($i=1;$i<= $available_combinations_count;$i++) {
-							                    				echo "<option>".$i."</option>";
-							                  			}
-						                			}
-						                		?>
-					              			</select>
-				              			@endif
-									</td>
-								</tr>
-							@endforeach
-						@else
-							<tr>
-								<td colspan="2">No need to request combination!</td>
-							</tr>
-						@endif					
-					</tbody>
-				</table>
-			@else
-				Combination registration is closed!
-			@endif
-		@endif
-		<!-- Edit button -->
-    	<div class="row-fluid" style ="margin-bottom: 7px;">
-	        <div class="span6">
-	            <label class="control-labelme" for="submit"></label>
-	        </div>
-	        <div class="pull-left">
-				<button id="{{$user_name}}"  class="btn btn-primary edit_priority" > Edit </button>
-	        </div>
-        </div>
-	   	</form>
-	</div>
 
 @stop

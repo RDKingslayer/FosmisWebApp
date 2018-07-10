@@ -3,7 +3,7 @@
 @section('content')
     <div class="well span8">
 
-        <legend>Registered Combinations</legend>
+        <legend>Selected Combinations</legend>
 
         <div class="row-fluid">
 
@@ -62,7 +62,7 @@
     </div>
 
         <div class="row-fluid">
-            <h5>Course Description :</h5>
+            <h5 style="text-align:center">Subjects & Codes </h5>
 
             @if($c=='BS')
                 <table class="table" align="center" style="width: auto !important;">

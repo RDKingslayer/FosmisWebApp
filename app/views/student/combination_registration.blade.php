@@ -1,5 +1,32 @@
 @extends('layouts.dashboard')
 
+@section('sidebar')
+    <br>
+    <li>
+        <span class="subtopic">Course</span>
+    </li>
+
+    <ul><i class="icon-list icon-black"></i> &nbsp;<a href="{{ URL::Route('register-students')}}">View Attendence</a></ul>
+    <ul><i class="icon-list icon-black"></i> &nbsp;<a href="{{ URL::Route('search_students')}}">Register Courses</a></ul>
+    <ul><i class="icon-list icon-black"></i> &nbsp;<a href="{{ URL::Route('search_students')}}">View Examination Eligibility</a></ul>
+
+    <br>
+    <li>
+        <span class="subtopic">Examination</span>
+    </li>
+
+    <ul><i class="icon-list icon-black"></i> &nbsp;<a href="{{ URL::Route('register-students')}}">View Results/GPA</a></ul>
+    <ul><i class="icon-list icon-black"></i> &nbsp;<a href="{{ URL::Route('search_students')}}">Register Examination</a></ul>
+
+    <br>
+    <li>
+        <span class="subtopic">Degree Requirements</span>
+    </li>
+
+    <ul><i class="icon-list icon-black"></i> &nbsp;<a href="{{ URL::Route('register-students')}}">View Requirements</a></ul>
+    <ul><i class="icon-list icon-black"></i> &nbsp;<a href="{{ URL::Route('search_students')}}">Degree Status</a></ul>
+@stop
+
 @section('content')
     <div class="well span8">
 
@@ -30,7 +57,7 @@
 
             ?>
 
-            <h5>Stream name  -{{ $d->stream_name}} </h5>
+            <h5>My Stream - {{ $d->stream_name}} </h5>
             @if(Session::has('CombinationErrorMessage1'))
                 {{--<div class="alert alert-success">--}}
                 {{--{{ Session::get('message') }}--}}
@@ -186,7 +213,7 @@
 
         </div>
         <div class="row-fluid">
-            <h5>Course Description :</h5>
+            <h5 style="text-align:center">Subjects & Codes</h5>
 
             @if($c=='BS')
                 <table class="table" align="center" style="width: auto !important;">

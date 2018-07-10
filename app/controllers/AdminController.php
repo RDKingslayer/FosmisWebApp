@@ -313,8 +313,10 @@ class AdminController extends BaseController {
 
     public function AssignPermanentIDs()
     {
-        return View::make('admin.assign_permanent_id');
+        $students = Student::where('permanent_number', '=', '')->get();
+        return View::make('admin.assign_permanent_id')->with('students_table', $students);
     }
+
     public function AssignPIDsingle()
     {
         $temporary=Input::get('TemporaryID');

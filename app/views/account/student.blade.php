@@ -1,17 +1,18 @@
 @extends('layouts.dashboard')
 
 
+@section('content')
 
-<div class="span12">
-   <div class="span2"></div>
+
 	<div class="well span8">
 
+		<legend>Notices</legend>
 
+		<div class="row-fluid">
+			<h1>This is Notices Page </h1>
 
+		</div>
 
-
-
-	
 	</div>
-	<div class="span2"></div>
-</div>
+
+@stop

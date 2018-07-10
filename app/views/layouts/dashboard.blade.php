@@ -101,7 +101,7 @@
                             <ul >
 
 
-                                @yield('list')
+                                @yield('sidebar')
                             </ul>
                         </div>
                     </div>
@@ -165,10 +165,10 @@
                     <div  class="wrapper span3">
                       <div class="sidebar-wrapper">
 
+                          @yield('sidebar')
 
 
-
-
+<!--
 
          <h5>   <a href="#" data-toggle="collapse" data-target="#querybox1"> Course</a></h5> 
          <br>
@@ -203,7 +203,7 @@
                   <li><a href="#">Degree Status</a></li>
                     <br>
                  </ul>
-              </div>
+              </div>  -->
 
 
     

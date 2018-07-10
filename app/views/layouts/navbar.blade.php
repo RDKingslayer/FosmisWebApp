@@ -61,13 +61,7 @@
                                  <i class="icon-ok icon-black">
                                  </i>Call Combination
                               </a>
-                           </li>
-                           <li>
-                              <a href="{{ URL::Route('assign_permanent_ids') }}">
-                                 <i class="icon-ok icon-black">
-                                 </i>Assign Permanent IDs
-                              </a>
-                           </li>
+                           </li>                           
                         </ul>
                   </li>
                </ul>
