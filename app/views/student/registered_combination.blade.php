@@ -1,5 +1,32 @@
 @extends('layouts.dashboard')
 
+@section('sidebar')
+    <br>
+    <li>
+        <span class="subtopic">Course</span>
+    </li>
+
+    <ul><i class="icon-list icon-black"></i> &nbsp;<a href=#>View Attendence</a></ul>
+    <ul><i class="icon-list icon-black"></i> &nbsp;<a href=#>Register Courses</a></ul>
+    <ul><i class="icon-list icon-black"></i> &nbsp;<a href=#>View Examination Eligibility</a></ul>
+
+    <br>
+    <li>
+        <span class="subtopic">Examination</span>
+    </li>
+
+    <ul><i class="icon-list icon-black"></i> &nbsp;<a href=#>View Results/GPA</a></ul>
+    <ul><i class="icon-list icon-black"></i> &nbsp;<a href=#>Register Examination</a></ul>
+
+    <br>
+    <li>
+        <span class="subtopic">Degree Requirements</span>
+    </li>
+
+    <ul><i class="icon-list icon-black"></i> &nbsp;<a href=#>View Requirements</a></ul>
+    <ul><i class="icon-list icon-black"></i> &nbsp;<a href=#>Degree Status</a></ul>
+@stop
+
 @section('content')
     <div class="well span8">
 

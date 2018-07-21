@@ -18,19 +18,21 @@ class CourseUnitController extends BaseController {
 
 	public function postCourseUnit()
 	{
+
 		$Validator = Validator::make(Input::all(), array(
 			'fsc'					=>	'required',
 			'code'					=>	'required',
 			'title'					=>	'required',
 			'type'					=>	'required',
-			'gpa'					=>  'required',
-			'core'					=>  'required'
-			));
+		//	'gpa'					=>  'required',
+		//	'core'					=>  'required'
+            )
+        );
 
-	if($Validator->fails()){
+	    if($Validator->fails()){
 					//$Validator->messages()
 
-				return Redirect::route('add-course-unit')//->with('message','jghjgdjhgh');
+				return Redirect::route('add-course-unit')//->with('msg','through validator fail')
 				->withErrors($Validator->messages())
 				->withInput();
 
@@ -42,7 +44,7 @@ class CourseUnitController extends BaseController {
        					//	 echo '<div class="error">' . $error . '</div>';
   //  }
 //}
-		}else{
+        }else{
 			$fsc 				= Input::get('fsc');
 			$code 				= Input::get('code');
 			$title 				= Input::get('title');
@@ -51,6 +53,7 @@ class CourseUnitController extends BaseController {
 			$gpa				= Input::get('gpa');
 			$core 				= Input::get('core');
 
+			$gpa                = 1;
 			$level 				= substr($code,3,1);
 			$semester 			= substr($code,4,1);
 			$credits 			= substr($code,6,1);
@@ -73,6 +76,7 @@ class CourseUnitController extends BaseController {
 			else 
 				$cre=$credits;
 
+			echo $code."z".$cre."z";
 			$course_code = CourseUnit::create(['code'=>$code, 'credits'=>$cre, 'type'=>$type, 'level'=>$level,'gpa_status'=>$gpa ,'semester'=>$semester, 'degree_id'=>$degree_id])->code;
 
 			if(Input::has('department')){
@@ -94,32 +98,31 @@ class CourseUnitController extends BaseController {
 					$c_o_bcs 		= Input::get('c_o_bcs');
 					$target_group	=TargetGroup::create(['code'=>$course_code, 'degree_id'=>$degree, 'course_status'=>$c_o_bcs]);
 				}
-				else{}
 
 				if(Input::has('bsc')){
 					$degree 		= Input::get('bsc');
 
 					if(Input::has('ps')){
-						$pathway_ps = Input::get('ps');
+						$pathways_ps = Input::get('ps');
 						$c_o_ps = Input::get('c_o_ps');
-							foreach($pathway_ps as $pathway_ps)
+							foreach($pathways_ps as $pathway_ps)
 							{
    								$target_group = TargetGroup::create(['code'=>$course_code, 'target_pathways'=>$pathway_ps, 'degree_id'=>$degree, 'course_status'=>$c_o_ps, 'academic_year'=>$academic_yr]);
 							}
 					}	
-					else{}				
+
 
 					if(Input::has('bs')){
-						$pathway_bs = Input::get('bs');
+						$pathways_bs = Input::get('bs');
 						$c_o_bs = Input::get('c_o_bs');
-							foreach($pathway_bs as $pathway_bs)
+							foreach($pathways_bs as $pathway_bs)
 							{
    								$target_group = TargetGroup::create(['code'=>$course_code, 'target_pathways'=>$pathway_bs, 'degree_id'=>$degree, 'course_status'=>$c_o_bs, 'academic_year'=>$academic_yr]);
 							}
 					}
-					else{} 
+
 				}
-				else{}
+
 
 				//BCS Special Degree
 				if(Input::has('bcs_spe'))
@@ -128,7 +131,7 @@ class CourseUnitController extends BaseController {
 					$c_o_bcs_spe 	= Input::get('c_o_bcs_spe');
 					$target_group = TargetGroup::create(['code'=>$course_code, 'degree_id'=>$degree, 'course_status'=>$c_o_bcs_spe, 'academic_year'=>$academic_yr]);
 				}
-				else{}
+
 				
 				//BSc Special Degree
 				$name='BSc (Special)';

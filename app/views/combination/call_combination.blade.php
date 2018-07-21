@@ -39,7 +39,7 @@
             </div>
 	        <div class="span4 row-fluid">
 	        	
-            	<input name="batch" id="batch" class="input-large" type="text" value='{{$batch_get_academic}}'>
+            	<input name="batch" id="batch" class="input-large" type="text" value='{{$batch_get_academic}}' readonly>
             	<input type="hidden" name="ac_yr" id="ac_yr" class="input-large" type="text" value='{{$current_year->academic_year_id}}'>
 			</div>
 		</div>
@@ -51,7 +51,7 @@
                <label class="control-labelme" for="" >Academic Starting Date</label>
             </div>
 	        <div class="span4 row-fluid">
-            	<input name="academic_start_date" id="academic_start_date" class="input-large" type="date" value="{{$current_year->starting_date}}" disabled>
+            	<input name="academic_start_date" id="academic_start_date" class="input-large" type="text" value="{{$current_year->starting_date}}" readonly>
 			</div>
 		</div>
 		<div class="row-fluid" style ="margin-left: 45px;" >
@@ -59,8 +59,8 @@
                <label class="control-labelme" for="" >Registration Start Date</label>
             </div>
 	        <div class="span4 row-fluid">
-	        	<input name="start_date" id="start_date" class="input-large" type="text" value="{{ $previous->start_date }}" @if($start == 0) disabled @endif>
-			
+	        	<input name="start_date" id="start_date" class="input-large" type="text" value="{{ $previous->start_date }}" @if($start == 0) disabled @endif required>
+				@if($start == 0) <input type="hidden" name="start_date" value="{{ $previous->start_date }}"> @endif
 			</div>
         </div>	
 </br>
@@ -71,7 +71,7 @@
                <label class="control-labelme" for="" >Academic End Date</label>
             </div>
          	<div class="span4 row-fluid">
-        		<input name="academic_end_date" id="academic_end_date" class="input-large" type="date" value="{{$current_year->ending_date}}" disabled>
+        		<input name="academic_end_date" id="academic_end_date" class="input-large" type="text" value="{{$current_year->ending_date}}" readonly>
 			</div>
     	</div>
     	<div class="row-fluid" style ="margin-left: 45px;" >
@@ -79,9 +79,23 @@
                <label class="control-labelme" for="" >Registration End Date</label>
             </div>
 	        <div class="span4 row-fluid">
-	        	<input name="end_date" id="end_date" class="input-large" type="text" placeholder="yyyy/mm/dd" value="{{ $previous->end_date }}" >
+	        	<input name="end_date" id="end_date" class="input-large" type="text" placeholder="yyyy/mm/dd" value="{{ $previous->end_date }}" required >
 			</div>
-    	</div>	
+
+    	</div>
+			<div class="row-fluid" style ="margin-right: auto;: 45px;">
+			@if(Session::has('ErrorMsg'))
+                    <br>
+				<div class="alert-danger">
+					<ul>
+						<li>
+							{{Session::pull('ErrorMsg','default')}}
+						</li>
+					</ul>
+				</div>
+				@endif
+			</div>
+
 </br>
 
     	<!-- submit button -->

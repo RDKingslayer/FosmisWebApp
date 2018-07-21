@@ -66,13 +66,41 @@
 
 
 
-@section('list')
-   <!-- <li>
-        <span class="subtopic">Student Registration</span>
-    </li>
+@section('sidebar')
+    <span class="subtopic">Combination Registration</span>
+    <ul> <i class="icon-list icon-black"></i>  <a href="#" data-toggle="collapse" data-target="#querybox1">&nbspPhysical Science</a></ul>
 
-    <ul><i class="icon-list icon-black"></i> &nbsp<a href="{{ URL::Route('register-students')}}">Register Students</a></ul>
-    <ul><i class="icon-list icon-black"></i> &nbsp<a href="{{ URL::Route('search_students')}}">Search Students</a></ul> -->
+
+    <div id="querybox1" class="collapse">
+        <ul style="margin-left:90px;">
+
+            <li><a href="{{ URL::Route('stucom-ps1')}}">PS1</a></li>
+            <li><a href="{{ URL::Route('stucom-ps2')}}">PS2</a></li>
+            <li><a href="{{ URL::Route('stucom-ps3')}}">PS3</a></li>
+            <li><a href="{{ URL::Route('stucom-ps4')}}">PS4</a></li>
+            <li><a href="{{ URL::Route('stucom-ps5')}}">PS5</a></li>
+            <li><a href="{{ URL::Route('stucom-ps6')}}">PS6</a></li>
+            <li><a href="{{ URL::Route('stucom-ps7')}}">PS7</a></li>
+            <li><a href="{{ URL::Route('stucom-ps8')}}">PS8</a></li>
+
+            <br>
+        </ul>
+    </div>
+
+    <ul> <i class="icon-list icon-black"></i>  <a href="#" data-toggle="collapse" data-target="#querybox2">&nbspBiological Science</a></ul>
+    <br>
+    <div id="querybox2" class="collapse">
+        <ul style="margin-left:90px;">
+
+            <li><a href="{{ URL::Route('stucom-bs1')}}">BS1</a></li>
+            <li><a href="{{ URL::Route('stucom-bs2')}}">BS2</a></li>
+            <li><a href="{{ URL::Route('stucom-bs3')}}">BS3</a></li>
+            <li><a href="{{ URL::Route('stucom-bs4')}}">BS4</a></li>
+
+
+            <br>
+        </ul>
+    </div>
 @stop
 
 @section('content')

@@ -62,6 +62,11 @@ class AccountController extends BaseController {
             {
                return Redirect::route('search_students1');
             }
+
+            elseif(Auth::user()->role  == 'systemadmin')
+            {
+                return View::make('account.system_admin');
+            }
             
 		}
 		else

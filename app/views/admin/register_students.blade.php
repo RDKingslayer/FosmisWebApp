@@ -307,7 +307,7 @@
                                     {{--data-status="{{ $row->status }}"--}}
                                     {{--data-degree_id="{{ $row->degree_id }}"--}}
                                     {{--data-combination_id="{{ $row->combination_id }}"--}}
-                            >sc{{ $row->student_id }}</a></td>
+                            >{{ $row->student_id }}</a></td>
 
                         <td>{{ $row->initials." ".$row->last_name }}</td>
                         {{--<td>{{ $row->current_batch }}</td>--}}

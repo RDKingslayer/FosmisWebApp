@@ -16,7 +16,7 @@ Route::get('sign-out',			array('as' => 'sign-out',		'uses' => 'AccountController
 /****************  course units **************************/
 //registre course units
 Route::get('add-course-unit',	array('as'=>'add-course-unit', 'uses'=>'CourseUnitController@getCourseUnit'));
-Route::post('add-course-unit',	array('as'=>'post-course-unit', 'uses'=>'CourseUnitController@postCourseUnit'));
+Route::post('post-course-unit',	array('as'=>'post-course-unit', 'uses'=>'CourseUnitController@postCourseUnit'));
 Route::post('Prerequisites',	array('as'=>'Prerequisites', 'uses'=>'CourseUnitController@PrerequisitesCourse'));
 Route::post('post-core-elective/{course?}',	array('as'=>'post-core-elective', 'uses'=>'CourseUnitController@postCoreElective'));
     
@@ -61,6 +61,8 @@ Route::post('update-semester',	array('as'=>'update-semester', 'uses'=>'AdminCont
 Route::get('register-students', array('as'=>'register-students', 'uses'=>'AdminController@RegisterStudents'));
 //Parse CSV
 Route::post('parse_csv', array('as'=>'parse_csv', 'uses'=>'AdminController@ParseCsv'));
+
+
 //Register a student
     Route::get('register_a_student', array('as'=>'register_a_student', 'uses'=>'AdminController@registerAStudent'));
 
@@ -179,5 +181,17 @@ Route::get('show_timetable',array('as'=>'show_timetable','uses'=>'TimeTableContr
 
 Route::get('redirect', array('as'=>'redirect','uses'=>'AttendanceController@redirect'));
 
+/*******************************************************************************************************/
+//system_admin_routes
+ Route::get('enter_students_csv',array('as'=>'enter_students_csv','uses'=>'systemAdminController@EnterStudentDetails'));
+    Route::post('enter_students_csv',array('as'=>'enter_students_csv','uses'=>'systemAdminController@EnterStudentDetails'));
+    Route::get('showTable1', array('as'=>'showTable1', 'uses'=>'systemAdminController@showTable'));
+    Route::post('parse_csv1', array('as'=>'parse_csv1', 'uses'=>'systemAdminController@ParseCsv'));
+    Route::get('enter_one_student', array('as'=>'enter_one_student', 'uses'=>'systemAdminController@registerAStudent'));
+    Route::get('enter_only_one_student', array('as'=>'enter_only_one_student', 'uses'=>'systemAdminController@registerOneStudent'));
+    Route::post('enter_only_one_student', array('as'=>'enter_only_one_student', 'uses'=>'systemAdminController@registerOneStudent'));
 
-});
+    Route::get('generate_permanent_ids', array('as'=>'generate_permanent_ids', 'uses'=>'systemAdminController@generatePermanentIds'));
+    Route::post('post_generate_permanent_id', array('as'=>'post_generate_permanent_id', 'uses'=>'systemAdminController@postGeneratePermanentIds'));
+
+}); // Close before auth group

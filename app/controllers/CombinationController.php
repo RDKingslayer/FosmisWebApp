@@ -15,10 +15,7 @@
             {
                 $start_day = 0;
             }
-            else
-            {
-                $start_day = 1;
-            }
+
 			return View::make('combination.call_combination')
                 ->with('current_year',$current_year)
                 ->with('previous',$previous)
@@ -43,14 +40,28 @@
 			$batch					= Input::get('batch');
 			$academic_year_id		= Input::get('ac_yr');
 
+			$academic_start_date = Input::get('academic_start_date');
+			$academic_end_date = Input::get('academic_end_date');
+
+			if($start_date < $academic_start_date || $end_date > $academic_end_date)
+            {
+               return Redirect::route('call-combination')->withInput()->with('ErrorMsg','Combination call date should be within academic duration');
+            }
+
 
 			$combination_registration = CallCombinationRegistration::where(['batch'=>$batch, 'academic_year_id'=> $academic_year_id])->count();
 
 			if($combination_registration)
 			{
+                if((Input::get('end_date')) < Input::get('start_date'))
+                {
+                    return Redirect::route('call-combination')->withInput()->with('ErrorMsg','Registration End date must be greater or equal to registration start date');
+                }
 
                 if((Input::has('start_date')) && (Input::has('end_date')))
                 {
+
+
                     CallCombinationRegistration::where(['batch'=>$batch, 'academic_year_id'=>$academic_year_id, 'status'=>$status])->update(['start_date'=>$start_date, 'end_date'=>$end_date]);
                 }
 				elseif((Input::has('end_date')))
@@ -71,11 +82,11 @@
                         ->withErrors($Validator)
                         ->withInput();
                 }
-
+                CallCombinationRegistration::where(['status'=>$status])->update(['status'=>'0']);
                 CallCombinationRegistration::create(['batch' => $batch, 'start_date' => $start_date, 'end_date' => $end_date, 'academic_year_id' => $academic_year_id, 'status' => $status]);
 
-                return Redirect::route('call-combination');
             }
+            return Redirect::route('call-combination');
         }
 
 		public function PostRequestCombination(){

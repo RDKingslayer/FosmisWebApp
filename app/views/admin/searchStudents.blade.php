@@ -149,7 +149,7 @@
     </script>
 @stop
 
-@section('list')
+@section('sidebar')
     <li>
         <span class="subtopic">Student Registration</span>
     </li>

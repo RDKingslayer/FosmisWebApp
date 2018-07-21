@@ -1,12 +1,12 @@
 <div id="navi" class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
+    <div class="navbar-inner">
         <div class="container-fluid">
 
             <div class="nav-collapse collapse">
-               <a class="brand" href="">
-                   <span style="text-transform: lowercase;">Fosmis</span>
-               </a>
-               <!-- GENERAL -->
+                <a class="brand" href="">
+                    <span style="text-transform: lowercase;">Fosmis</span>
+                </a>
+                <!-- GENERAL -->
                <ul class="nav">
                    <li class="dropdown">
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">GENERAL

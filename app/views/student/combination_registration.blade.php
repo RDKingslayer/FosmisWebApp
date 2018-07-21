@@ -6,25 +6,25 @@
         <span class="subtopic">Course</span>
     </li>
 
-    <ul><i class="icon-list icon-black"></i> &nbsp;<a href="{{ URL::Route('register-students')}}">View Attendence</a></ul>
-    <ul><i class="icon-list icon-black"></i> &nbsp;<a href="{{ URL::Route('search_students')}}">Register Courses</a></ul>
-    <ul><i class="icon-list icon-black"></i> &nbsp;<a href="{{ URL::Route('search_students')}}">View Examination Eligibility</a></ul>
+    <ul><i class="icon-list icon-black"></i> &nbsp;<a href=#>View Attendence</a></ul>
+    <ul><i class="icon-list icon-black"></i> &nbsp;<a href=#>Register Courses</a></ul>
+    <ul><i class="icon-list icon-black"></i> &nbsp;<a href=#>View Examination Eligibility</a></ul>
 
     <br>
     <li>
         <span class="subtopic">Examination</span>
     </li>
 
-    <ul><i class="icon-list icon-black"></i> &nbsp;<a href="{{ URL::Route('register-students')}}">View Results/GPA</a></ul>
-    <ul><i class="icon-list icon-black"></i> &nbsp;<a href="{{ URL::Route('search_students')}}">Register Examination</a></ul>
+    <ul><i class="icon-list icon-black"></i> &nbsp;<a href=#>View Results/GPA</a></ul>
+    <ul><i class="icon-list icon-black"></i> &nbsp;<a href=#>Register Examination</a></ul>
 
     <br>
     <li>
         <span class="subtopic">Degree Requirements</span>
     </li>
 
-    <ul><i class="icon-list icon-black"></i> &nbsp;<a href="{{ URL::Route('register-students')}}">View Requirements</a></ul>
-    <ul><i class="icon-list icon-black"></i> &nbsp;<a href="{{ URL::Route('search_students')}}">Degree Status</a></ul>
+    <ul><i class="icon-list icon-black"></i> &nbsp;<a href=#>View Requirements</a></ul>
+    <ul><i class="icon-list icon-black"></i> &nbsp;<a href=#>Degree Status</a></ul>
 @stop
 
 @section('content')

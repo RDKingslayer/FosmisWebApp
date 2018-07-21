@@ -3,7 +3,7 @@
 class Student extends \Eloquent {
 
 	protected $fillable = ['s_no','ssid','course_of_study','index_number_al','temporary_number','permanent_number','student_id','initials','last_name','name_in_full','dob','email','permanent_address_line1','permanent_address_line2','permanent_address_line3','permanent_address_line4',
-        'gender','province','district','divisional_secretariat','grama_niladari_division','z_score','nic','telephone_number_home','selection_method','mother_name','mother_occupation','father_name','father_occupation','guardian_contact_no','informer_contact_no','school','village','race',
+        'gender','province','district','distric','divisional_secretariat','grama_niladari_division','z_score','nic','telephone_number_home','selection_method','mother_name','mother_occupation','father_name','father_occupation','guardian_contact_no','informer_contact_no','school','village','race',
             'al_batch','current_batch','status','degree_id','combination_id','stream_id','date_of_registration'];
 	public $timestamps =false;
 	protected $table = "student";
